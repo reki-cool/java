@@ -1,0 +1,74 @@
+body{
+	margin:0px;
+	padding:0px;
+	font-size:12px;
+	background-image:url(../images/b-image.gif); <!-- 这里用的是相对路径，两点表示的是返回上两层目录，也就是WebRoot目录 -->
+	overflow:hidden;
+}
+
+#top{
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:111px;
+	background-image:url(../images/xiaohuiS.gif);
+	text-align:center;
+}
+
+#top-font p{
+	margin:0px;
+	padding-left:25%;
+	padding-up:20px;
+	font-family:arial,微软正黑体;
+	font-size:450%;
+	font-weight:900;
+	float:left;
+	color:#000;
+	text-align:center;
+}
+
+#top-user{
+	margin:0px;
+	padding:0px;
+	font-size:14px;
+	text-align:right;
+}
+
+#menuline{
+	float:right;
+	background-color:#9CA2AC;
+	width:80%;
+	height:40px;
+	font-weight:bold;
+	background: rgba(147,158,172, 0.3); <!-- 设置背景颜色以及背景的透明度 -->
+	/*filter:alpha(Opacity=30);
+	-moz-opacity:0.3;
+	opacity: 0.3;
+	z-index:9;*/
+}
+
+#menu{
+	margin:0px auto;
+	padding:0px;
+	z-index:100;
+	z-index:10;
+	text-align:center;
+}
+
+#menu ul li{
+	margin-left:10px;
+	<!--border-right:solid 2px #FFFFFF;-->
+	padding-left:10px;
+	font-size:16px;
+	float:left;
+}
+
+#menu ul li a{
+	display:block;
+	text-decoration:none;
+	color:#FFFFFF;
+}
+
+#menu ul li a:hover{
+	background-color:#0F5587;
+}

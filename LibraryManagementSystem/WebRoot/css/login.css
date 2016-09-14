@@ -1,0 +1,43 @@
+			body{
+				margin:0px;
+				padding:0px;
+				font-size:12px;
+				background-color:#016aa9;
+				overflow:hidden;
+				text-align:center; <%-- 这一段没起作用 --%>
+			}
+			
+			#container{
+				position:absolute;
+				left:180px;
+				width:980px;
+			<%--	border:1px solid red; --%>
+			}
+			
+			#login{
+				margin-top:250px;
+			}
+			
+			#input div input{
+				margin-bottom:5px;
+				background-color:#292929;
+				width:120px;
+				height:15px;
+				border:0px;
+				color:#6cd0ff;
+			}
+			
+			#input div{
+				margin-bottom:5px;
+			}
+			
+			#button{
+				margin-left:25px;
+				margin-top:5px;
+			}
+			
+			#button input{
+				background-color:#000;
+				color:#FFF;
+				margin-left:8px;
+			}

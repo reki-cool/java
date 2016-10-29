@@ -1,0 +1,51 @@
+在Servlet的整个生命周期内，Servlet的init方法只被调用一次。
+而对一个Servlet的每次访问请求都导致Servlet引擎调用一次Servlet的service方法。
+对于每次访问请求，Servlet引擎都会创建一个新的HttpServletRequet请求对象和
+一个新的HttpServletResponse响应对象，然后将这两个对象作为参数传递给它调用
+的Servlet的service()方法，service方法再根据请求方式分别调用doXXX方法。
+
+
+Servlet接口和几个类的关系
+		Servlet接口
+			|
+			|实现
+			|
+		GenericServlet类(通用Servlet类)
+			|
+			|继承
+			|
+		HttpServlet类(既然是直接继承了GenericServlet类，那么也实现了Servlet接口)
+			|
+			|继承
+			|
+		MyServlet类(我们自己写的Servlet类)
+
+
+问：那么我们自己写的Servlet类为什么不直接继承GenericServlet类，而是继承HttpServlet类呢？
+
+答：看"Http"也知道，这个类和Http协议相关，因为我们用的Servlet都是
+用于处理和Http协议相关的内容，为了方便处理Http的请求和响应，所以
+我们选择继承HttpServlet这个类(此类中包含很多doXXX的方法，XXX是Http协议的请求方式)。
+换句话说，我们当前使用的是HTTP协议，所以我们继承HttpServlet，
+如果以后要用其他的协议，就可以直接继承GenericServlet类。
+
+注意：
+	(从GenericServlet继承的类或者从HttpServlet继承的类)如果想要重
+	写init方法，就直接重写那个不带参数的init方法即可。
+	因为在GenericServlet类中有两个init方法，其中一个带参，一个不带参，
+	带参数的那个init方法会调用不带参的方法，所以如果想要重写init方法，
+	就直接重写不带参的init方法即可。
+
+
+	HttpServlert类中有两个service方法，一个参数类型为(ServletRequest和ServletResponse)，
+	一个参数类型为(HttpServletRequest和HttpServletResponse)，不带有Http的service方法中获取请求和响应，
+	并进行向下强转，变成HttpServletRequest和HttpServletResponse，然后调用并传参给带有Http的service方法。
+	而这个带有Http的service方法体中，会先对请求的方式进行判断，
+	判断完成后选择相应的do方法(即前面说的doXXX方法)进行处理，而我们要写的业务逻辑就放在那些do方法中。
+	所以我们如果要改变业务逻辑就只需要重写那些do方法就行。不需要重写任意一个service方法！！！
+
+
+以后的Servlet开发步骤：
+	* 编写一个类，继承HttpServlet类
+	* 重写doGet和doPost方法(目前我们只用到Get和Post这两种请求方式，如果要用到其他的XXX请求方式，则再重写doXXX方法)
+	* 再在web.xml文件中配置虚拟路径

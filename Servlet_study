@@ -1,0 +1,59 @@
+Servlet学习：
+
+	* 首先Servlet属于动态的web资源，既然是动态的web资源，首先就要想到，动态的web资源项目开发中，那几个重要的目录及文件：WEBROOT目录，此目录下面有WEB-INF目录，WEB-INF目录下面又有classes目录,lib目录,以及web.xml文件。
+
+	* 那么什么是Servlet呢？（在JAVAEE的JDK文档中可以搜索“Servlet”进行查看）
+		Servlet定义：Servlet就是运行在web服务器中的一个小的java程序，可以接收和响应从客户端(浏览器)发送过来的请求。
+		接收和响应的过程：HTTP协议作为载体，客户端将请求放在HTTP协议这个“盒子”里，发送给Servlet(Servlet接收请求)，然后Servlet对请求进行处理，Servlet再将处理结果放在“盒子”里返回给客户端(响应请求)。
+
+	* 如果想要编写一个Servlet
+		步骤一：自行编写一个类，实现Servlet接口，并重写5个方法（init方法，service方法，getServletConfig方法，getServletInfo方法，destroy方法）
+
+				或者，利用已经写好的Servlet接口的实现类 GenericServlet类：
+					编写一个类继承GenericServlet类，并且重写service方法。（一些业务逻辑处理就写在该方法中）
+
+		步骤二：配置好Servlet的路径信息。在web.xml文件中配置。
+
+		步骤三：因为是动态的web资源项目，所以要设置一个固定的项目目录结构。并放在tomcat服务器的webapps目录下面
+
+				webapps/
+					|--其他的web项目文件夹
+					|--myweb/
+						|--此项目要用到的一些静态资源
+						|--WEB-INF/  (注意WEB-INF目录中间是短杠不是下划线！！！！)
+							  |--classes/   里面存放Servlet编译后的class文件
+							  |--lib/
+							  |--web.xml    里面配置Servlet的路径信息
+		
+		步骤四：将步骤一中编写好的Servlet(.java文件)放在classes目录下
+
+		步骤五：编译classes目录下的这个Servlet文件
+				编译方法：
+					在cmd中窗口中，先切换到classes目录下，然后键入命令：javac -d . Servlet完整文件名
+					
+					"javac" 是编译指令
+					“-d”    代表带包编译，即编译完成后带有包结构
+					“.”     代表在当前目录下编译
+
+				编译出错：发现“程序包javax.servlet不存在”，原因：classpath环境变量没有配置。
+		
+		步骤六：配置classpath环境变量：
+				在系统设置中新建一个classpath环境变量，然后里面填上tomcat下的lib文件夹里面的servlet-api.jar文件的路径。然后重启cmd窗口再进行编译即可。
+
+				或者直接在cmd窗口中输入命令: set classpath=%classpath%;tomcat安装路径\lib\servlet-api.jar   
+				这个是临时添加一个环境变量，并且只对当前的窗口有效，关闭窗口后就没了。  然后编译Servlet这个java文件即可。
+
+		步骤七：经过步骤六，编译成功了，接下来配置Servlet路径（在web.xml文件中进行配置）
+
+				格式：(在web-app标签对中插入下面内容)
+					<servlet>
+						<servlet-name>此处填一个任意且唯一的名称</servlet-name>
+						<servlet-class>此处填完整的Servlet文件名(包名+类名,注意不要有扩展名)</servlet-class>
+					</servlet>
+					<servlet-mapping>
+						<servlet-name>此处和上面的servlet-name标签必须相同</servlet-name>
+						<url-pattern>此处填虚拟路径(/ + 任意内容)</url-pattern>
+					</servlet-mapping>
+
+		步骤八：启动tomcat服务器，然后进行访问即可。
+				http://localhost:8080/项目名+虚拟路径   即可访问。

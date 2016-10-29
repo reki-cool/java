@@ -57,3 +57,26 @@ Servlet学习：
 
 		步骤八：启动tomcat服务器，然后进行访问即可。
 				http://localhost:8080/项目名+虚拟路径   即可访问。
+
+
+	* Servlet的生命周期
+		* 生命周期：实例被创建，对外提供服务，销毁。
+
+		* Servlet实例被创建后，服务器用init方法去初始化一个Servlet，注意：init方法是服务器调用的
+			init(ServletConfig config) 
+
+		* 用service方法去处理服务请求(从客户端发送的所有的请求是service方法进行处理的)
+			service(ServletRequest req, ServletResponse res) 
+
+		* 用destroy方法去销毁Servlet
+			destroy()
+
+		* 执行过程：！！！
+
+			并不是服务器一启动，Servlet实例就被创建，实际上是第一次访问服务器时，Servlet实例才被创建。这个实例从始至终只有这一个！！
+
+			创建实例后，服务器立即调用init方法初始化Servlet实例，init方法只会调用一次！！！
+
+			实例通过service方法提供服务，每有一个请求，service方法就会被调用一次！！（每有一个请求，实例都采用一个单独的线程去处理）
+
+			服务器关闭，或者手动移除时，destory方法会被调用且仅调用一次。

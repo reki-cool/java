@@ -24,6 +24,7 @@ public class ReadServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//read1();//传统的读取文件的方法
 		read2();
+		read3();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +50,19 @@ public class ReadServlet extends HttpServlet {
 	public void read2() throws IOException{
 		//利用ServletContext读取文件
 		InputStream in = getServletContext().getResourceAsStream("/WEB-INF/classes/db.properties");//这里的路径要写服务器端的路径，而不是客户端的路径，注意区别就在于前者不用项目名，后者需要！！！
-		//打印方式
+		//打印
+		print(in);
+	}
+	
+	/**
+	 * 通过ServletContext对象获取文件的绝对磁盘路径，然后再获取此路径对应的文件内容
+	 * @throws IOException
+	 */
+	public void read3() throws IOException{
+		//通过ServletContext对象获取文件的绝对路径
+		String realpath = getServletContext().getRealPath("/WEB-INF/classes/db.properties");
+		//获取输入流
+		InputStream in = new FileInputStream(realpath);
 		print(in);
 	}
 	

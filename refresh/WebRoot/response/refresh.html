@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="5;url=/refresh/response/login.html">
+<title>页面定时跳转，并且会读秒</title>
+</head>
+<body onload="run()">
+	<h2>页面将在<span id="spanID">5</span>秒后跳转</h2>
+</body>
+	
+	<script type="text/javascript">
+		/*
+			读秒的操作
+			页面一加载，就加载读秒操作事件   使用onload
+			执行读秒操作，每隔一秒变一次。  使用js定时器
+		*/
+		var x = 5;
+		function run() {
+			var span = document.getElementById("spanId");
+			spanID.innerHTML = x;
+			x--;
+			window.setTimeout("run()", 1000);  //递归，每隔一秒调用一次run方法
+		}
+		
+	</script>
+	
+</html>
+<!-- /浏览器访问链接：http://localhost:8080/refresh/response/refresh.html -->

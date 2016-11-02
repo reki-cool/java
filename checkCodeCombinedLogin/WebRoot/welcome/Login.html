@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>结合验证码的登陆页</title>
+</head>
+<body>
+	<table border="1" width="50%">
+		<tr>
+			<td>用户名</td>
+			<td colspan="2"><input type="text" name="username" /></td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td colspan="2"><input type="password" name="password" /></td>
+		</tr>
+		<tr>
+			<td>输入验证码：</td>
+			<td><input type="text" name="checkcode1" /></td>
+			<td><a href="#" onclick="run()"><img id="imgId1" src="/checkCodeCombinedLogin/Yzm"></img></a>直接点击验证码刷新</td>
+		</tr>
+		<tr>
+			<td>输入验证码：</td>
+			<td><input type="text" name="checkcode2" /></td>
+			<td><img id="imgId2" src="/checkCodeCombinedLogin/Yzm"></img><a href="#" onclick="run1()">看不清，换一张</a>"</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<input  type="submit" value="提交">
+			</td>
+		</tr>
+	</table>
+</body>
+	<script type="text/javascript">
+		function run() {
+			//获取图片,看不清，换一张，在image的src后面加上一个时间戳，防止浏览器不重新获取验证码
+			var image = document.getElementById("imgId1");
+			image.src = "/checkCodeCombinedLogin/Yzm?"+new Date().getTime();
+		}
+		function run1() {
+			//获取图片,看不清，换一张，在image的src后面加上一个时间戳，防止浏览器不重新获取验证码
+			var image = document.getElementById("imgId2");
+			image.src = "/checkCodeCombinedLogin/Yzm?"+new Date().getTime();
+		}
+	</script>
+</html>

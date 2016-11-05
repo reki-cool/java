@@ -133,8 +133,10 @@ public class Captcha {
 		if((one == 0 && two >= 0 && two <=3) || (one == 1 && two >= 0 && two <= 1)) {
 			this.TYPE_STAGE1 = one;
 			this.TYPE_STAGE2 = two;
-			if(this.TYPE_STAGE1*4 + TYPE_STAGE2 > 3) {
-				setCharNumber(4);
+			int temp = 0;
+			if((temp = this.TYPE_STAGE1*4 + TYPE_STAGE2) > 3) {
+				if(temp == 4) setCharNumber(3);
+				else setCharNumber(4);
 				SET_CHAR_NUMBER = false;
 			}
 			else SET_CHAR_NUMBER = true;
@@ -279,11 +281,16 @@ public class Captcha {
 	 */
 	private int drawDoubleChar(String[] x){
 		int index = random.nextInt(x.length);//返回指定下标位置的字符，随机获取下标
-		String str = x[index]; //根据下标获取字符
-		WORDS = str;
-		drawOPChar(0);
-		X_OFFSET += X_DIST+2*HEIGHT/9; //确定下一个待画字符的横向偏移
-		drawOPChar(1);
+		WORDS = x[index]; //根据下标获取字符
+		if(x.equals(CN_OPS)){
+			drawOPChar(0);
+			X_OFFSET += X_DIST+2*HEIGHT/9; //确定下一个待画字符的横向偏移
+			drawOPChar(1);
+		}
+		else {
+			drawOPChar(0);
+		}
+		
 		return index;//返回操作编号
 	}
 	
@@ -353,6 +360,7 @@ public class Captcha {
 	 * 根据默认的宽(150px)和高(30px)创建画布对象;
 	 * 创建画笔对象;
 	 * 给画布涂上默认的灰色背景色;
+	 * 绘制画布边框为白色;
 	 * 创建随机数对象;
 	 * 设置字体；
 	 */
@@ -364,6 +372,8 @@ public class Captcha {
 		//设置画布的默认背景色为灰色
 		g2D.setColor(Color.GRAY);  // 设置画笔颜色
 		g2D.fillRect(0, 0, WIDTH, HEIGHT);  //画填充矩形
+		g2D.setColor(Color.WHITE);  // 设置画笔颜色
+		g2D.drawRect(0, 0, WIDTH-1, HEIGHT-1);  //画矩形
 		//获取随机数对象
 		random = new Random();
 		setFontSize();

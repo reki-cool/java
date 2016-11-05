@@ -14,7 +14,7 @@ public class TestMyCaptcha {
 		
 		x.setType(0,0);
 		//x.setCharNumber(6);
-		//x.setFontSize(25);
+		//x.setFontSize(125);
 		//x.setRandomColor(true);
 		
 		//x.setBackgroundColor(Color.GRAY);

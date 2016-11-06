@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<form action="/request1/RegServlet" method="get">
+		<table border="1" width="50%">
+			<tr>
+				<td>输入姓名</td>
+				<td>
+					<input type="text" name="username" />
+				</td>
+			</tr>
+			<tr>
+				<td>输入密码</td>
+				<td>
+					<input type="password" name="password" />
+				</td>
+			</tr>
+			<tr>
+				<td>选择性别</td>
+				<td>
+					<input type="radio" name="sex" value="男"/>男
+					<input type="radio" name="sex" value="女"/>女
+				</td>
+			</tr>
+			<tr>
+				<td>选择爱好</td>
+				<td>
+					<input type="checkbox" name="hobby" value="basketball" />篮球
+					<input type="checkbox" name="hobby" value="football" />足球
+					<input type="checkbox" name="hobby" value="music" />音乐
+				</td>
+			</tr>
+			<tr>
+				<td>选择城市</td>
+				<td>
+					<select name="city">
+						<option vlaue="none">--请选择--</option>
+						<option value="BeiJing">北京</option>
+						<option value="ShangHai">上海</option>
+						<option value="ShenZhen">深圳</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="提交" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</body>
+</html>

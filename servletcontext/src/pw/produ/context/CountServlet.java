@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
  * @Title : CountServlet.java
- * @author: Pro.DU
- * @date  : 2016年10月31日下午2:20:55
- * @blog  : www.produ.pw 
- * @email : 2504621508@qq.com 
  * @Description: 统计网页(此servlet)的访问次数
  */
 public class CountServlet extends HttpServlet {
